@@ -31,6 +31,11 @@ int main(int argc, char const *argv[])
    auto sack = knapsack(pairs, size, max);
    // TODO: Bottom up calculation to find out which items end up in the sack.
 
+   for(size_t i = 0; i < size; ++i)	
+      delete [] sack[i];	
+   delete [] sack;
+   delete pairs;
+
    return 0;
 }
 
