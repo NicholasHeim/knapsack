@@ -3,8 +3,6 @@
  * Contact: nickheim28@gmail.com
  * Created: June 20, 2020
  * Purpose: A C++ implementation of the 0-1 Knapsack algorithm using vectors.
- *          Note: It cannot handle multiple items of the same weight and
- *          different values currently.
  *          https://en.wikipedia.org/wiki/Knapsack_problem
  */
 
@@ -22,7 +20,6 @@ int ** knapsack(std::vector<std::pair<int, int>> *, const int, const int);
 int main(int argc, char const *argv[])
 {
    // Need weights and values of the items and the number of items
-   // Note: It will be assumed that there are no items of weight zero.
    const int size = 10, max = 165;
    std::vector<int> weights, values;
    weights.reserve(size); values.reserve(size);
@@ -65,7 +62,6 @@ std::vector<std::pair<int, int>>* genVector(std::vector<int> weights, std::vecto
  */
 int ** knapsack(std::vector<std::pair<int, int>> *pairs, const int size, const int max)
 {
-   // Set up the matrix of values:
    // Columns will be the different weights,
    // Rows will be the weights (and values) of the items.
    int **sack = new int*[size];
