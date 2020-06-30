@@ -12,7 +12,7 @@
 #include <vector>
 
 // Prototypes
-std::vector<std::pair<int, int>>* genVector(std::vector<int>,
+std::vector<std::pair<int, int>>* genPairs(std::vector<int>,
    std::vector<int>, const int);
 int ** knapsack(std::vector<std::pair<int, int>> *, const int, const int);
 
@@ -27,7 +27,8 @@ int main(int argc, char const *argv[])
    weights = {23, 29, 31, 38, 44, 53, 63, 82, 85, 89};
    values =  {92, 49, 57, 43, 68, 60, 67, 72, 84, 87};
 
-   knapsack(genVector(weights, values, size), size, max);
+   auto pairs = genPairs(weights, values, size);
+   knapsack(pairs, size, max);
    // TODO: Bottom up calculation to find out which items end up in the sack.
 
    return 0;
@@ -41,7 +42,7 @@ int main(int argc, char const *argv[])
  *          weight. This will be used in the knapsack function and is important
  *          for the calculation for the first line of the knapsack array. 
  */
-std::vector<std::pair<int, int>>* genVector(std::vector<int> weights, std::vector<int> values, const int size)
+std::vector<std::pair<int, int>>* genPairs(std::vector<int> weights, std::vector<int> values, const int size)
 {
    std::vector<std::pair<int, int>> *pairs = new std::vector<std::pair<int, int>>;
    for(size_t i = 0; i < size; ++i)
@@ -93,6 +94,5 @@ int ** knapsack(std::vector<std::pair<int, int>> *pairs, const int size, const i
                       ((*pairs)[i].second + sack[i - 1][j - sack[i][0]]) : (sack[i - 1][j]);
    }
 
-   delete pairs;
    return sack;
 }
